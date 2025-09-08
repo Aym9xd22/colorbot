@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Control Bot</title>
+</head>
+<body>
+    <h1>Bot Control</h1>
+    <p>Status: <span id="status">{{ 'Active' if status else 'Inactive' }}</span></p>
+    <button onclick="toggleBot()">Toggle Bot</button>
+
+    <script>
+        async function toggleBot() {
+            const response = await fetch('/toggle', { method: 'POST' });
+            const data = await response.json();
+            document.getElementById('status').textContent = data.status ? 'Active' : 'Inactive';
+        }
+    </script>
+</body>
+</html>
